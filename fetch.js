@@ -1,10 +1,10 @@
-(function() {
+
     let url = new URLSearchParams(window.location.search);
     let user = url.get("username");
-    
+
     fetch(`https://api.github.com/users/${user}`)
         .then(resp => resp.json())
-        .then(json => {
+        .then(function(json) {
             if (json.message === "Not Found") {
                 let error = document.createElement("error");
                 let errorText = document.createTextNode("Информация о пользователе не доступна");
@@ -36,4 +36,3 @@
         .catch((err) => {
             console.log(err);
         });
-}());
